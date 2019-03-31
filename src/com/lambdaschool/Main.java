@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -16,9 +17,10 @@ public class Main {
 
         Scanner sc;
         try {
-            sc = new Scanner(filePath);
+            sc = new Scanner(filePath).useDelimiter(Pattern.compile("[^A-Za-z0-9]+"));
             while (sc.hasNext()) {
                 String word = sc.next();
+                word = word.toLowerCase();
                 counter.put(word, counter.getOrDefault(word, 0) + 1);
             }
             sc.close();
